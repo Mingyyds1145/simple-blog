@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}文章归档 - {{ super() }}{% endblock %}
+
+{% block content %}
+<div class="archive-header">
+    <h1>文章归档</h1>
+    <p>共 {{ posts|length }} 篇文章</p>
+</div>
+
+<div class="archive-list">
+    {% for post in posts %}
+    <article class="archive-item">
+        <h3>
+            <a href="{{ url_for('show_post', slug=post.slug) }}">{{ post.metadata.title }}</a>
+        </h3>
+        <div class="archive-meta">
+            <time>{{ post.metadata.date }}</time>
+            {% if post.metadata.tags %}
+            <span class="tags">
+                {% for tag in post.metadata.tags %}
+                <span class="tag">{{ tag }}</span>
+                {% endfor %}
+            </span>
+            {% endif %}
+        </div>
+    </article>
+    {% endfor %}
+</div>
+{% endblock %}

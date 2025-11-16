@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ config.BLOG_INFO.title }}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/syntax.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div class="layout">
+        <!-- 头部 -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <h1 class="blog-title">
+                        <a href="{{ url_for('index') }}">{{ config.BLOG_INFO.title }}</a>
+                    </h1>
+                    <p class="blog-description">{{ config.BLOG_INFO.description }}</p>
+                </div>
+                <nav class="nav">
+                    <a href="{{ url_for('index') }}"
+                       class="nav-link {% if request.endpoint == 'index' %}active{% endif %}">
+                        首页
+                    </a>
+                    <a href="{{ url_for('archive') }}"
+                       class="nav-link {% if request.endpoint == 'archive' %}active{% endif %}">
+                        归档
+                    </a>
+                    <a href="{{ url_for('about') }}"
+                       class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">
+                        关于
+                    </a>
+                    {% if config.DEBUG %}
+                    <a href="{{ url_for('dev_info') }}"
+                       class="nav-link dev-link {% if request.endpoint == 'dev_info' %}active{% endif %}">
+                        开发信息
+                    </a>
+                    {% endif %}
+                </nav>
+            </div>
+        </header>
+
+        <!-- 主要内容 -->
+        <main class="main">
+            <div class="container">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+
+        <!-- 底部 -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p>&copy; 2024 {{ config.BLOG_INFO.author }}.
+                    由 <a href="https://github.com/Mingyyds1145/simple-blog" target="_blank">Simple Blog</a> 驱动</p>
+                    {% if config.BLOG_INFO.github %}
+                    <p class="social-links">
+                        <a href="https://github.com/{{ config.BLOG_INFO.github }}" target="_blank">GitHub</a>
+                        {% if config.BLOG_INFO.email %}
+                        · <a href="mailto:{{ config.BLOG_INFO.email }}">联系我</a>
+                        {% endif %}
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

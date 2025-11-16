@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.metadata.title }} - {{ super() }}{% endblock %}
+
+{% block content %}
+<article class="page">
+    <header class="page-header">
+        <h1>{{ page.metadata.title }}</h1>
+    </header>
+    
+    <div class="page-content">
+        {{ page.content|safe }}
+    </div>
+</article>
+{% endblock %}
