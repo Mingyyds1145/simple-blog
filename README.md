@@ -10,5 +10,5 @@ git clone https://github.com/Mingyyds1145/simple-blog
 cd simple-blog
 pip install -r requirements.txt
 python run.py
-
+```
 ### 2. 可以开始使用啦🎉
