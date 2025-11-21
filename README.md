@@ -11,4 +11,4 @@ cd simple-blog
 pip install -r requirements.txt
 python run.py
 ```
-### 2. 可以开始使用啦🎉
+## 2. 可以开始使用啦 🎉
